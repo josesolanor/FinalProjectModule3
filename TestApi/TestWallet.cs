@@ -1,3 +1,4 @@
+using ApiWallet.Core;
 using ApiWallet.Interfaces;
 using ApiWallet.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -11,41 +12,37 @@ namespace TestApi
     [TestClass]
     public class TestWallet
     {
-        private List<BalanceDTO> _balance;
-        private ILogicMethods _logicMethods;
+        
+        public LogicMethods logicMethods = new LogicMethods();
 
-        public TestWallet(ILogicMethods logicMethods)
+        [TestMethod]
+        public void ShouldShowYourCurrentBalance()
         {
-            _balance = new List<BalanceDTO>
+            List<BalanceDTO> _balance = new List<BalanceDTO>
             {
                 new BalanceDTO
                 {
                     Type = "Deposit",
                     Amount = 100,
-                    Date = DateTime.Today.AddDays(-2)
+                    Date = DateTime.Today
                 },
                 new BalanceDTO
                 {
-                    Type = "Withdraw ",
+                    Type = "WithDraw",
                     Amount = 50,
-                    Date = DateTime.Today.AddDays(-1)
+                    Date = DateTime.Today
+                },
+                new BalanceDTO
+                {
+                    Type = "WithDraw",
+                    Amount = 25,
+                    Date = DateTime.Today
                 }
             };
-            _logicMethods = logicMethods;
-        }
 
-        [TestMethod]
-        public void ShouldShowYourCurrentBalance()
-        {
-            _balance.Add(new BalanceDTO {
-                Type = "Withdraw ",
-                Amount = 25,
-                Date = DateTime.Today
-            });
+            var result = logicMethods.ShowBalance(_balance);
 
-            var result = _logicMethods.showBalance(_balance);
-
-            Assert.Equals(result, 25);
+            Assert.AreEqual(25, result);
         }
 
         [TestMethod]
