@@ -9,5 +9,7 @@ namespace ApiWallet.Interfaces
     public interface ILogicMethods
     {
         decimal ShowBalance(List<BalanceDTO> data);
+
+        bool AddIncomes(List<BalanceDTO> wallet, decimal deposit);
     }
 }

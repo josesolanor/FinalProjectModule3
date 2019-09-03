@@ -9,6 +9,11 @@ namespace ApiWallet.Core
 {
     public class LogicMethods : ILogicMethods
     {
+        public bool AddIncomes(List<BalanceDTO> wallet, decimal deposit)
+        {
+            throw new NotImplementedException();
+        }
+
         public decimal ShowBalance(List<BalanceDTO> data)
         {
             decimal result = 0;

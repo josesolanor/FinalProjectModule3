@@ -45,7 +45,11 @@ namespace TestApi
         [TestMethod]
         public void ShouldAddIncomesToYourBalance()
         {
+            var deposit = 100;
 
+            var result = logicMethods.AddIncomes(_balance, deposit);
+
+            Assert.IsTrue(result);
         }
         [TestMethod]
         public void ShouldWithdrawFundsFromYourBalance()
