@@ -46,20 +46,31 @@ namespace TestApi
         public void ShouldAddIncomesToYourBalance()
         {
             var deposit = 100;
+            var type = "Deposit";
 
-            var result = logicMethods.AddIncomes(_balance, deposit);
+            var result = logicMethods.AddTransaction(_balance, type, deposit);
 
             Assert.IsTrue(result);
         }
         [TestMethod]
         public void ShouldWithdrawFundsFromYourBalance()
         {
+            var deposit = -25;
+            var type = "Deposit";
 
+            var result = logicMethods.AddTransaction(_balance, type, deposit);
+
+            Assert.IsTrue(result);
         }
         [TestMethod]
         public void ShouldNotWithdrawNegativesFundsFromYourBalance()
         {
+            var deposit = -200;
+            var type = "Deposit";
 
+            var result = logicMethods.AddTransaction(_balance, type, deposit);
+
+            Assert.IsFalse(result);
         }
     }
 }

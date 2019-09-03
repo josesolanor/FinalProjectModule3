@@ -9,9 +9,22 @@ namespace ApiWallet.Core
 {
     public class LogicMethods : ILogicMethods
     {
-        public bool AddIncomes(List<BalanceDTO> wallet, decimal deposit)
+        public bool AddTransaction(List<BalanceDTO> wallet, string type, decimal deposit)
         {
-            throw new NotImplementedException();
+            var result = true;
+
+            wallet.Add(new BalanceDTO
+            {
+                Type = type,
+                Amount = deposit,
+                Date = DateTime.Today
+            });
+
+            if (wallet.Sum(v => v.Amount) < 0)
+            {
+                result = false;
+            }
+            return result;
         }
 
         public decimal ShowBalance(List<BalanceDTO> data)

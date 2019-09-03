@@ -10,6 +10,6 @@ namespace ApiWallet.Interfaces
     {
         decimal ShowBalance(List<BalanceDTO> data);
 
-        bool AddIncomes(List<BalanceDTO> wallet, decimal deposit);
+        bool AddTransaction(List<BalanceDTO> wallet, string type, decimal deposit);
     }
 }
