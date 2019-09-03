@@ -7,38 +7,25 @@ using System.Collections.Generic;
 
 namespace TestApi
 {
-
-
     [TestClass]
     public class TestWallet
     {
-        
+        public List<BalanceDTO> _balance;
         public LogicMethods logicMethods = new LogicMethods();
+
+        public TestWallet()
+        {
+            _balance = new  List<BalanceDTO>
+            {
+                new BalanceDTO { Type = "Deposit", Amount = 100, Date = DateTime.Today.AddDays(-2) },
+                new BalanceDTO { Type = "WithDraw", Amount = 50, Date = DateTime.Today.AddDays(-1) }
+            };
+        }
 
         [TestMethod]
         public void ShouldShowYourCurrentBalance()
         {
-            List<BalanceDTO> _balance = new List<BalanceDTO>
-            {
-                new BalanceDTO
-                {
-                    Type = "Deposit",
-                    Amount = 100,
-                    Date = DateTime.Today
-                },
-                new BalanceDTO
-                {
-                    Type = "WithDraw",
-                    Amount = 50,
-                    Date = DateTime.Today
-                },
-                new BalanceDTO
-                {
-                    Type = "WithDraw",
-                    Amount = 25,
-                    Date = DateTime.Today
-                }
-            };
+            _balance.Add(new BalanceDTO { Type = "WithDraw", Amount = 25, Date = DateTime.Today });
 
             var result = logicMethods.ShowBalance(_balance);
 
@@ -48,8 +35,13 @@ namespace TestApi
         [TestMethod]
         public void ShouldNotShowNegativeBalance()
         {
+            _balance.Add(new BalanceDTO { Type = "WithDraw", Amount = 125, Date = DateTime.Today });
 
+            var result = logicMethods.ShowBalance(_balance);
+
+            Assert.AreEqual(0, result);
         }
+
         [TestMethod]
         public void ShouldAddIncomesToYourBalance()
         {
