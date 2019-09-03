@@ -5,6 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 
+
 namespace TestApi
 {
     [TestClass]
@@ -17,15 +18,15 @@ namespace TestApi
         {
             _balance = new  List<BalanceDTO>
             {
-                new BalanceDTO { Type = "Deposit", Amount = 100, Date = DateTime.Today.AddDays(-2) },
-                new BalanceDTO { Type = "WithDraw", Amount = 50, Date = DateTime.Today.AddDays(-1) }
+                new BalanceDTO { Type = TransactionType.Deposit, Amount = 100, Date = DateTime.Today.AddDays(-2) },
+                new BalanceDTO { Type = TransactionType.WithDraw, Amount = 50, Date = DateTime.Today.AddDays(-1) }
             };
         }
 
         [TestMethod]
         public void ShouldShowYourCurrentBalance()
         {
-            _balance.Add(new BalanceDTO { Type = "WithDraw", Amount = 25, Date = DateTime.Today });
+            _balance.Add(new BalanceDTO { Type = TransactionType.WithDraw, Amount = 25, Date = DateTime.Today });
 
             var result = logicMethods.ShowBalance(_balance);
 
@@ -35,7 +36,7 @@ namespace TestApi
         [TestMethod]
         public void ShouldNotShowNegativeBalance()
         {
-            _balance.Add(new BalanceDTO { Type = "WithDraw", Amount = 125, Date = DateTime.Today });
+            _balance.Add(new BalanceDTO { Type = TransactionType.WithDraw, Amount = 125, Date = DateTime.Today });
 
             var result = logicMethods.ShowBalance(_balance);
 
@@ -46,7 +47,7 @@ namespace TestApi
         public void ShouldAddIncomesToYourBalance()
         {
             var deposit = 100;
-            var type = "Deposit";
+            var type = TransactionType.Deposit;
 
             var result = logicMethods.AddTransaction(_balance, type, deposit);
 
@@ -55,8 +56,8 @@ namespace TestApi
         [TestMethod]
         public void ShouldWithdrawFundsFromYourBalance()
         {
-            var deposit = -25;
-            var type = "Deposit";
+            var deposit = 25;
+            var type = TransactionType.WithDraw;
 
             var result = logicMethods.AddTransaction(_balance, type, deposit);
 
@@ -65,8 +66,8 @@ namespace TestApi
         [TestMethod]
         public void ShouldNotWithdrawNegativesFundsFromYourBalance()
         {
-            var deposit = -200;
-            var type = "Deposit";
+            var deposit = 200;
+            var type = TransactionType.WithDraw;
 
             var result = logicMethods.AddTransaction(_balance, type, deposit);
 

@@ -13,10 +13,13 @@ namespace ApiWallet.Core
         {
             var result = true;
 
+            var amount =  type.Equals(TransactionType.WithDraw) ? deposit * -1 : deposit;
+
+
             wallet.Add(new BalanceDTO
             {
                 Type = type,
-                Amount = deposit,
+                Amount = amount,
                 Date = DateTime.Today
             });
 
@@ -33,7 +36,7 @@ namespace ApiWallet.Core
 
             foreach (var item in data)
             {
-                if (item.Type.Equals("Deposit"))
+                if (item.Type.Equals(TransactionType.Deposit))
                 {
                     result += item.Amount;
                 }

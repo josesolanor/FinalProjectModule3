@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ApiWallet.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,7 @@ namespace ApiWallet.Context
         {
             optionsBuilder.UseSqlite("Filename=MyDatabase.db");
         }
+
+        public DbSet<Balance> Balances { get; set; }
     }
 }
