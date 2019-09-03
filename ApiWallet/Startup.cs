@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ApiWallet.Context;
+using ApiWallet.Entities;
 using ApiWallet.Mapper;
+using ApiWallet.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +32,7 @@ namespace ApiWallet
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
+                mc.CreateMap<BalanceDTO, Balance>();
             });
 
             IMapper mapper = mappingConfig.CreateMapper();
