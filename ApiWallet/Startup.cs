@@ -34,6 +34,8 @@ namespace ApiWallet
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
+                mc.CreateMap<BalanceDTO, Balance>();
+
             });
 
             IMapper mapper = mappingConfig.CreateMapper();

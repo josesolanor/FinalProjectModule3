@@ -30,7 +30,6 @@ namespace ApiWallet.Controllers
             _logicMethods = logicMethods;
         }
 
-        // GET: api/Balances
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BalanceDTO>>> GetBalances()
         {
@@ -39,7 +38,6 @@ namespace ApiWallet.Controllers
             return balancesDTO;
         }
 
-        // GET: api/Balances/5
         [HttpGet("{id}")]
         public async Task<ActionResult<BalanceDTO>> GetBalance(int id)
         {
@@ -54,19 +52,27 @@ namespace ApiWallet.Controllers
             return balanceDTO;
         }
 
-        // POST: api/Balances
         [HttpPost]
-        public async Task<ActionResult<BalanceDTO>> PostBalance(BalanceDTO balance)
+        public async Task<ActionResult<BalanceDTO>> PostBalance(BalanceDTO balanceDTO)
         {
-            var balanceEntity = _mapper.Map<Balance>(balance);
-            balanceEntity.Date = DateTime.UtcNow;
+            var balances = await _context.Balances.ToListAsync();
+            var balancesDTO = _mapper.Map<List<BalanceDTO>>(balances);
+            var result = _logicMethods.AddTransaction(balancesDTO, balanceDTO.Type, balanceDTO.Amount);
 
-            _context.Balances.Add(balanceEntity);
-            await _context.SaveChangesAsync();
+            if (result)
+            {
+                var balanceEntity = _mapper.Map<Balance>(balanceDTO);
+                balanceEntity.Date = DateTime.Now;
 
-            return CreatedAtAction("GetBalance", new { id = balanceEntity.Id }, balance);
+                _context.Balances.Add(balanceEntity);
+                await _context.SaveChangesAsync();
+
+                return CreatedAtAction("GetBalance", new { id = balanceEntity.Id }, balanceDTO);
+            }
+            return BadRequest();            
         }
 
+        [Route("Showbalance")]
         public async Task<decimal> ShowBalance()
         {            
             var balances = await _context.Balances.ToListAsync();
