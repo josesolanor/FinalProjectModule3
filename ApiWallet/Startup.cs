@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ApiWallet.Context;
+using ApiWallet.Core;
 using ApiWallet.Entities;
+using ApiWallet.Interfaces;
 using ApiWallet.Mapper;
 using ApiWallet.Models;
 using AutoMapper;
@@ -32,7 +34,6 @@ namespace ApiWallet
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MappingProfile());
-                mc.CreateMap<BalanceDTO, Balance>();
             });
 
             IMapper mapper = mappingConfig.CreateMapper();
@@ -40,6 +41,8 @@ namespace ApiWallet
             services.AddEntityFrameworkSqlite().AddDbContext<ApplicationDBContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+            services.AddTransient<ILogicMethods, LogicMethods>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
