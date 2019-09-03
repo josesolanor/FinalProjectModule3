@@ -1,4 +1,5 @@
 using ApiWallet.Interfaces;
+using ApiWallet.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -36,19 +37,15 @@ namespace TestApi
         [TestMethod]
         public void ShouldShowYourCurrentBalance()
         {
-            var newTransaccion = new BalanceDTO
-            {
+            _balance.Add(new BalanceDTO {
                 Type = "Withdraw ",
-                Amount = 50,
+                Amount = 25,
                 Date = DateTime.Today
-            };
+            });
 
-            _balance.Add(newTransaccion);
-,                           
-            var result = _logicMethods.ShowBalance(balance);
+            var result = _logicMethods.showBalance(_balance);
 
             Assert.Equals(result, 25);
-
         }
 
         [TestMethod]
