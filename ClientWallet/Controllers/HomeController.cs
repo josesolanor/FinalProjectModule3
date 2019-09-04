@@ -57,7 +57,7 @@ namespace ClientWallet.Controllers
             {
                 var result = responseMessage.Content.ReadAsStringAsync().Result;
 
-                TempData["Msg"] = $"Deposito realizado correctamente, Monto:{balance.Amount}";
+                TempData["Msg"] = $"Deposito realizado correctamente";
                 return RedirectToAction("Index");
             }
             else
@@ -79,7 +79,7 @@ namespace ClientWallet.Controllers
             {
                 var result = responseMessage.Content.ReadAsStringAsync().Result;
 
-                TempData["Msg"] = $"Retiro realizado correctamente, Monto:{balance.Amount}";
+                TempData["Msg"] = $"Retiro realizado correctamente";
                 return RedirectToAction("Index");
             }
             else
