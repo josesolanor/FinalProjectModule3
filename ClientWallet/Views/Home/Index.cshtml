@@ -14,7 +14,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form asp-action="AddDeposit">
+                <form asp-action="AddDeposit" id="AddDeposit">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="col-xs-12">
                         <div class="form-group">
@@ -44,7 +44,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form asp-action="AddWithdraw">
+                <form asp-action="AddWithdraw" id="AddWithdraw">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="col-xs-12">
                         <div class="form-group">
@@ -80,6 +80,7 @@
 </div>
 
 <script>
+
     $.ajax({
         url: '@Url.Action("Balance", "Home")',
         type: "GET"
