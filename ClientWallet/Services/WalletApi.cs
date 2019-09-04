@@ -13,9 +13,9 @@ namespace ClientWallet.Services
     {
         ClientConfig _api;
 
-        public WalletApi(IOptionsSnapshot<AppSettings> appSettings)
+        public WalletApi()
         {
-            _api = new ClientConfig(appSettings);
+            _api = new ClientConfig();
         }
 
         public HttpResponseMessage AddTransaction(Balance data)

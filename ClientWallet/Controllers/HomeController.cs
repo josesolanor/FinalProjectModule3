@@ -17,9 +17,9 @@ namespace ClientWallet.Controllers
         WalletApi _api;
         List<Wallet> walletList;
 
-        public HomeController(IOptionsSnapshot<AppSettings> appSettings)
+        public HomeController()
         {
-            _api = new WalletApi(appSettings);
+            _api = new WalletApi();
         }
 
         public async Task<IActionResult> Index()
@@ -37,7 +37,6 @@ namespace ClientWallet.Controllers
                 ViewBag.Message = "Error en el servidor.";
                 return View(walletList);
             }
-
             
         }
 

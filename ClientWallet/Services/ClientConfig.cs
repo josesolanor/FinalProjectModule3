@@ -15,7 +15,7 @@ namespace ClientWallet.Services
         {
             var Client = new HttpClient
             {
-                BaseAddress = new Uri("http://localhost:53516/")
+                BaseAddress = new Uri("http://localhost:20002/")
             };
             Client.DefaultRequestHeaders.Accept.Clear();
             Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
