@@ -26,7 +26,7 @@ namespace ClientWallet.Controllers
         {
             return View();
         }
-
+        [HttpGet]
         public async Task<IActionResult> Balance()
         {
             string result = "";

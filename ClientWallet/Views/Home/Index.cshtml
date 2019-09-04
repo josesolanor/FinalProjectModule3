@@ -3,11 +3,25 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Saldo</h1>
-    <h4 id="dataBalance" name="dataBalance"></h4>
+    <h2 class="display-4">Saldo</h2>
+    <h1 id="dataBalance" name="dataBalance">Cargando..</h1>
+</div>
+<br />
+<br />
+<div class="row text-center">
+    <div class="col-12 col-sm-6 col-md-6">
+        <button class="btn btn-group-vertical btn-outline-secondary" type="button">Depositar</button>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+        <button class="btn btn-group-vertical btn-outline-secondary" type="button">Retirar</button>
+    </div>
 </div>
 
-<div>
-    <button></button>
-    <button></button>
-</div>
+<script>
+    $.ajax({
+        url: '@Url.Action("Balance", "Home")',
+        type: "GET"
+    }).done(function (response) {
+        $("#dataBalance").text(response+" Bs");
+    });
+</script>
