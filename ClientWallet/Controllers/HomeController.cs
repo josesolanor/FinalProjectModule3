@@ -57,12 +57,15 @@ namespace ClientWallet.Controllers
             {
                 var result = responseMessage.Content.ReadAsStringAsync().Result;
 
-                return Json(result);
+                TempData["Msg"] = $"Deposito realizado correctamente, Monto:{balance.Amount}";
+                return RedirectToAction("Index");
             }
             else
             {
-                ViewBag.Message = "Error en el servidor.";
-                return BadRequest();
+                var result = responseMessage.Content.ReadAsStringAsync().Result;
+                var jsonResult = JsonConvert.DeserializeObject(result);
+                TempData["ApiMsg"] = jsonResult;
+                return RedirectToAction("Index");
             }
         }
 
@@ -76,12 +79,15 @@ namespace ClientWallet.Controllers
             {
                 var result = responseMessage.Content.ReadAsStringAsync().Result;
 
-                return Json(result);
+                TempData["Msg"] = $"Retiro realizado correctamente, Monto:{balance.Amount}";
+                return RedirectToAction("Index");
             }
             else
             {
-                ViewBag.Message = "Error en el servidor.";
-                return BadRequest();
+                var result = responseMessage.Content.ReadAsStringAsync().Result;
+                var jsonResult = JsonConvert.DeserializeObject(result);
+                TempData["ApiMsg"] = jsonResult;
+                return RedirectToAction("Index");
             }
         }
 

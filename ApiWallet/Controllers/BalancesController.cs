@@ -55,6 +55,11 @@ namespace ApiWallet.Controllers
         [HttpPost]
         public async Task<ActionResult<BalanceDTO>> PostBalance(BalanceDTO balanceDTO)
         {
+            if (balanceDTO.Amount <= 0)
+            {
+                return BadRequest("Monto menor a cero");
+            }
+
             var balances = await _context.Balances.ToListAsync();
             var balancesDTO = _mapper.Map<List<BalanceDTO>>(balances);
             var result = _logicMethods.AddTransaction(balancesDTO, balanceDTO.Type, balanceDTO.Amount);
@@ -69,7 +74,7 @@ namespace ApiWallet.Controllers
 
                 return CreatedAtAction("GetBalance", new { id = balanceEntity.Id }, balanceDTO);
             }
-            return BadRequest();            
+            return BadRequest("No se pudo realizar la transaccion");            
         }
 
         [Route("Showbalance")]
