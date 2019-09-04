@@ -40,7 +40,7 @@ namespace ClientWallet.Controllers
             
         }
 
-        public async Task<IActionResult> Privacy()
+        public async Task<IActionResult> Wallet()
         {
             HttpResponseMessage responseMessage = await _api.GetWallet();
             if (responseMessage.IsSuccessStatusCode)
