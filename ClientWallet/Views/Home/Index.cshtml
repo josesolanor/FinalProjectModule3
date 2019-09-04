@@ -1,6 +1,68 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model ClientWallet.Models.Balance
+
+@{
+    ViewData["Title"] = "Billetera";
 }
+
+<div class="modal fade" id="DepositModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nuevo Deposito</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="AddDeposit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label asp-for="Amount" class="control-label"></label>
+                            <input asp-for="Amount" class="form-control" />
+                            <span asp-validation-for="Amount" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <input type="submit" value="Aceptar" class="btn btn-group-vertical btn-outline-secondary" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="WithDrawModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nuevo Retiro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="AddWithdraw">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <label asp-for="Amount" class="control-label"></label>
+                            <input asp-for="Amount" class="form-control" />
+                            <span asp-validation-for="Amount" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <input type="submit" value="Aceptar" class="btn btn-group-vertical btn-outline-secondary" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="text-center">
     <h2 class="display-4">Saldo</h2>
@@ -10,10 +72,10 @@
 <br />
 <div class="row text-center">
     <div class="col-12 col-sm-6 col-md-6">
-        <button class="btn btn-group-vertical btn-outline-secondary" type="button">Depositar</button>
+        <button data-toggle="modal" data-target="#DepositModal" class="btn btn-group-vertical btn-outline-secondary" type="button">Depositar</button>
     </div>
     <div class="col-12 col-sm-6 col-md-6">
-        <button class="btn btn-group-vertical btn-outline-secondary" type="button">Retirar</button>
+        <button data-toggle="modal" data-target="#WithDrawModal" class="btn btn-group-vertical btn-outline-secondary" type="button">Retirar</button>
     </div>
 </div>
 

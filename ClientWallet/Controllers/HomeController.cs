@@ -26,6 +26,7 @@ namespace ClientWallet.Controllers
         {
             return View();
         }
+
         [HttpGet]
         public async Task<IActionResult> Balance()
         {
@@ -46,6 +47,45 @@ namespace ClientWallet.Controllers
             
         }
 
+        [HttpPost]
+        public IActionResult AddDeposit(Balance balance)
+        {
+            balance.Type = TransactionType.Deposit;
+            HttpResponseMessage responseMessage = _api.AddTransaction(balance);
+
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var result = responseMessage.Content.ReadAsStringAsync().Result;
+
+                return Json(result);
+            }
+            else
+            {
+                ViewBag.Message = "Error en el servidor.";
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        public IActionResult AddWithdraw(Balance balance)
+        {
+            balance.Type = TransactionType.WithDraw;
+            HttpResponseMessage responseMessage = _api.AddTransaction(balance);
+
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var result = responseMessage.Content.ReadAsStringAsync().Result;
+
+                return Json(result);
+            }
+            else
+            {
+                ViewBag.Message = "Error en el servidor.";
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
         public async Task<IActionResult> Wallet()
         {
             HttpResponseMessage responseMessage = await _api.GetWallet();
