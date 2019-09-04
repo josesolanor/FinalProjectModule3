@@ -25,7 +25,7 @@ namespace ClientWallet.Controllers
         public async Task<IActionResult> Index()
         {
             
-            HttpResponseMessage responseMessage = await _api.GetWallet();
+            HttpResponseMessage responseMessage = await _api.GetBalance();
             if (responseMessage.IsSuccessStatusCode)
             {
                 var result = responseMessage.Content.ReadAsStringAsync().Result;
@@ -40,9 +40,20 @@ namespace ClientWallet.Controllers
             
         }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Privacy()
         {
-            return View();
+            HttpResponseMessage responseMessage = await _api.GetWallet();
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var result = responseMessage.Content.ReadAsStringAsync().Result;
+                walletList = JsonConvert.DeserializeObject<List<Wallet>>(result);
+                return View(walletList);
+            }
+            else
+            {
+                ViewBag.Message = "Error en el servidor.";
+                return View(walletList);
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

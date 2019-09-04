@@ -13,13 +13,29 @@ namespace ClientWallet.Services
 
         public HttpClient Initial()
         {
-            var Client = new HttpClient
+
+            var Host = Environment.GetEnvironmentVariable("SERVICE");
+            var Port = Environment.GetEnvironmentVariable("SERVICE_PORT");
+            var Client = new HttpClient();
+
+            if (Host is null || Port is null)
             {
-                BaseAddress = new Uri("http://localhost:20002/")
-            };
+                Client = new HttpClient
+                {
+                    BaseAddress = new Uri("http://localhost:20002/")
+                };
+                
+            }
+            else
+            {
+                Client = new HttpClient
+                {
+                    BaseAddress = new Uri($"http://{Host}:{Port}/")
+                };
+            }
             Client.DefaultRequestHeaders.Accept.Clear();
             Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            return Client;
+            return Client;          
         }
     }
 }

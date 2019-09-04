@@ -12,14 +12,19 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SERVICE": "localhost",
+        "SERVICE_PORT": "20002"
       }
     },
     "ClientWallet": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "SERVICE": "localhost",
+        "SERVICE_PORT": "20002"
+
       },
       "applicationUrl": "http://localhost:20001"
     },
