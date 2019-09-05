@@ -12,8 +12,6 @@ namespace ApiWallet.Core
         public bool AddTransaction(List<BalanceDTO> wallet, string type, decimal deposit)
         {
             var result = true;
-            decimal total = 0;
-
             wallet.Add(new BalanceDTO
             {
                 Type = type,
@@ -21,8 +19,7 @@ namespace ApiWallet.Core
                 Date = DateTime.Today
             });
 
-            total = ShowBalance(wallet);
-
+            decimal total = ShowBalance(wallet);
             if (total < 0)
             {
                 result = false;

@@ -58,7 +58,7 @@ namespace ApiWallet.Controllers
 
             if (balanceDTO.Amount <= 0)
             {
-                return BadRequest("Monto menor a cero");
+                return BadRequest("Error, Monto menor a cero");
             }
 
             var balances = await _context.Balances.ToListAsync();
@@ -75,7 +75,7 @@ namespace ApiWallet.Controllers
 
                 return CreatedAtAction("GetBalance", new { id = balanceEntity.Id }, balanceDTO);
             }
-            return BadRequest("No se pudo realizar la transaccion");            
+            return BadRequest("Error, Monto de retiro mayor al saldo actual");            
         }
 
         [Route("Showbalance")]
