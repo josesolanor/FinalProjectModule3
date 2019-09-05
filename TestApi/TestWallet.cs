@@ -34,16 +34,6 @@ namespace TestApi
         }
 
         [TestMethod]
-        public void ShouldNotShowNegativeBalance()
-        {
-            _balance.Add(new BalanceDTO { Type = TransactionType.WithDraw, Amount = 125, Date = DateTime.Today });
-
-            var result = logicMethods.ShowBalance(_balance);
-
-            Assert.AreEqual(0, result);
-        }
-
-        [TestMethod]
         public void ShouldAddIncomesToYourBalance()
         {
             var deposit = 100;
@@ -63,6 +53,18 @@ namespace TestApi
 
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void ShouldWithdrawExactFundsFromYourBalance()
+        {
+            var deposit = 50;
+            var type = TransactionType.WithDraw;
+
+            var result = logicMethods.AddTransaction(_balance, type, deposit);
+
+            Assert.IsTrue(result);
+        }
+
         [TestMethod]
         public void ShouldNotWithdrawNegativesFundsFromYourBalance()
         {
@@ -73,5 +75,7 @@ namespace TestApi
 
             Assert.IsFalse(result);
         }
+
+
     }
 }

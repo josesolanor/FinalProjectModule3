@@ -13,7 +13,9 @@ namespace ClientWallet.Models
 
         [Display(Name = "Monto")]
         [Required]
-        [Range(1, int.MaxValue, ErrorMessage = "Monto no puede ser cero")]
-        public decimal Amount { get; set; }
+        public string Amount { get; set; }
+
+        public decimal RealAmount { get; set; }
+
     }
 }

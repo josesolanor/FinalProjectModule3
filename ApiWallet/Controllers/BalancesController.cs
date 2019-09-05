@@ -55,6 +55,7 @@ namespace ApiWallet.Controllers
         [HttpPost]
         public async Task<ActionResult<BalanceDTO>> PostBalance(BalanceDTO balanceDTO)
         {
+
             if (balanceDTO.Amount <= 0)
             {
                 return BadRequest("Monto menor a cero");

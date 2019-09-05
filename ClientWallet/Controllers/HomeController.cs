@@ -9,6 +9,7 @@ using System.Net.Http;
 using ClientWallet.Services;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace ClientWallet.Controllers
 {
@@ -50,7 +51,12 @@ namespace ClientWallet.Controllers
         [HttpPost]
         public IActionResult AddDeposit(Balance balance)
         {
+            NumberStyles style = NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands;
+            CultureInfo provider = new CultureInfo("es-mx");
+            balance.RealAmount = decimal.Parse(balance.Amount, style, provider);
+
             balance.Type = TransactionType.Deposit;
+
             HttpResponseMessage responseMessage = _api.AddTransaction(balance);
 
             if (responseMessage.IsSuccessStatusCode)
@@ -72,6 +78,11 @@ namespace ClientWallet.Controllers
         [HttpPost]
         public IActionResult AddWithdraw(Balance balance)
         {
+
+            NumberStyles style = NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands;
+            CultureInfo  provider = new CultureInfo("es-mx");
+            balance.RealAmount = decimal.Parse(balance.Amount, style, provider);
+
             balance.Type = TransactionType.WithDraw;
             HttpResponseMessage responseMessage = _api.AddTransaction(balance);
 

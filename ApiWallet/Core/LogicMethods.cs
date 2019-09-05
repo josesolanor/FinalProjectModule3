@@ -12,18 +12,18 @@ namespace ApiWallet.Core
         public bool AddTransaction(List<BalanceDTO> wallet, string type, decimal deposit)
         {
             var result = true;
-
-            var amount =  type.Equals(TransactionType.WithDraw) ? deposit * -1 : deposit;
-
+            decimal total = 0;
 
             wallet.Add(new BalanceDTO
             {
                 Type = type,
-                Amount = amount,
+                Amount = deposit,
                 Date = DateTime.Today
             });
 
-            if (wallet.Sum(v => v.Amount) < 0)
+            total = ShowBalance(wallet);
+
+            if (total < 0)
             {
                 result = false;
             }
@@ -44,11 +44,6 @@ namespace ApiWallet.Core
                 {
                     result -= item.Amount;
                 }
-            }
-
-            if (result <= 0)
-            {
-                return 0;
             }
 
             return result;

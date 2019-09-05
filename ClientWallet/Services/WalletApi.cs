@@ -32,7 +32,7 @@ namespace ClientWallet.Services
                 var options = new
                 {
                     type = data.Type,
-                    amount = data.Amount
+                    amount = data.RealAmount
                 };
 
                 var stringData = JsonConvert.SerializeObject(options);
