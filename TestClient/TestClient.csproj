@@ -20,4 +20,23 @@
     <ProjectReference Include="..\ClientWallet\ClientWallet.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Specs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ShowBalance.feature.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ShowBalance.feature</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <SpecFlowFeatureFiles Update="ShowBalance.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ShowBalance.feature.cs</LastGenOutput>
+    </SpecFlowFeatureFiles>
+  </ItemGroup>
+
 </Project>
