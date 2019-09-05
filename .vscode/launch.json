@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/ClientWallet/bin/Debug/netcoreapp2.2/ClientWallet.dll",
+            "program": "${workspaceFolder}/ClientWallet/bin/Debug/netcoreapp2.2/publish/ClientWallet.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
@@ -32,7 +32,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/ApiWallet/bin/Debug/netcoreapp2.2/ApiWallet.dll",
+            "program": "${workspaceFolder}/ApiWallet/bin/Debug/netcoreapp2.2/publish/ApiWallet.dll",
             "args": [],
             "cwd": "${workspaceFolder}/ApiWallet",
             "stopAtEntry": false,
