@@ -18,20 +18,21 @@ namespace TestClient
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.0.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Ver Saldo")]
-    public partial class VerSaldoFeature
+    [NUnit.Framework.DescriptionAttribute("AddTransaction")]
+    public partial class AddTransactionFeature
     {
         
         private TechTalk.SpecFlow.ITestRunner testRunner;
         
-#line 1 "ShowBalance.feature"
+#line 1 "AddTransaction.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Ver Saldo", "\tComo un cliente de API web (no humano)\r\n\tRequiero verificar mi saldo actual", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AddTransaction", "\tComo un cliente de API web (no humano)\r\n\tRequiero agregar una transaccion mi sal" +
+                    "do actual", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -70,21 +71,21 @@ namespace TestClient
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Visualizar mi saldo actual")]
-        public virtual void VisualizarMiSaldoActual()
+        [NUnit.Framework.DescriptionAttribute("Realizando una Transaccion")]
+        public virtual void RealizandoUnaTransaccion()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Visualizar mi saldo actual", null, ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Realizando una Transaccion", null, ((string[])(null)));
 #line 5
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
 #line 6
- testRunner.Given("Que soy un cliente http", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("Que soy un cliente no humano http", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 7
- testRunner.When("Hago un request GET hacia el url de mi saldo", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("Cargo los datos de TYPE \'Deposit\' AMOUNT 100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 8
- testRunner.Then("Recibo una respuesta con http 200", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("Hago un request POST hacia el url de realizar transaccion", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
- testRunner.And("Recibo el valor de mi saldo con valor 100", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.Then("Recibo una respuesta con el valor http 201", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

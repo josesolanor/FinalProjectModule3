@@ -7,17 +7,20 @@ using Newtonsoft.Json;
 using NUnit.Framework;
 using System;
 using System.Net.Http;
+using System.Text;
 using TechTalk.SpecFlow;
 using TestClient.Mocks;
+
 
 namespace TestClient.Specs
 {
     [Binding]
-    public class VerSaldoSteps
+    public class AddTransactionSteps
     {
         private WebApplicationFactory<Startup> _factory;
         private HttpClient client;
         private HttpResponseMessage response;
+        private object options;
 
         [BeforeScenario(Order = 1)]
         public void Initialize()
@@ -37,32 +40,39 @@ namespace TestClient.Specs
             });
         }
 
-        [Given(@"Que soy un cliente http")]
-        public void GivenQueSoyUnClienteHttp()
+        [Given(@"Que soy un cliente no humano http")]
+        public void GivenQueSoyUnClienteNoHumanoHttp()
         {
             client = ConstructorWebHostBuilderConfigured().CreateClient();
         }
 
-        [When(@"Hago un request GET hacia el url de mi saldo")]
-        public async System.Threading.Tasks.Task WhenHagoUnRequestGETHaciaElUrlDeMiSaldo()
+        [When(@"Cargo los datos de TYPE '(.*)' AMOUNT (.*)")]
+        public void WhenCargoLosDatosDeTYPEAMOUNT(string type, int amount)
         {
-            var url = "/api/Balances/Showbalance";
-            response = await client.GetAsync(url);
-
+            options = new
+            {
+                type = type,
+                amount = amount
+            };
         }
 
-        [Then(@"Recibo una respuesta con http (.*)")]
-        public void ThenReciboUnaRespuestaConHttp(int httpStatus)
+        [When(@"Hago un request POST hacia el url de realizar transaccion")]
+        public async System.Threading.Tasks.Task WhenHagoUnRequestPOSTHaciaElUrlDeRealizarTransaccionAsync()
+        {
+            var url = "/api/Balances";
+
+            var stringData = JsonConvert.SerializeObject(options);
+            var content = new StringContent(stringData, Encoding.UTF8, "application/json");
+
+            HttpContent data = content;
+
+            response = await client.PostAsync(url, data);
+        }
+
+        [Then(@"Recibo una respuesta con el valor http (.*)")]
+        public void ThenReciboUnaRespuestaConElValorHttp(int httpStatus)
         {
             Assert.AreEqual(httpStatus, (int)response.StatusCode);
-        }
-
-        [Then(@"Recibo el valor de mi saldo con valor (.*)")]
-        public async System.Threading.Tasks.Task ThenReciboElValorDeMiSaldoEnUnJSONConTamanoDeCadena(int number)
-        {
-            var result = JsonConvert.DeserializeObject<decimal>(await response.Content.ReadAsStringAsync());
-
-            Assert.AreEqual(expected: number, actual: result);
         }
     }
 }
