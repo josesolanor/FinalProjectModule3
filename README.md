@@ -7,24 +7,24 @@ _La implementación de todos los niveles de pruebas en el diagrama piramidal, es
 
 La implementacion del proyecto y sus pruebas se desarrollaron bajo tecnologia Microsoft de la siguiente manera:
 
-* Aplicacion API - Asp.net Core 2.2 API
+* Aplicacion API - Asp.net API Core 2.2
 * Aplicacion Cliente - Asp.net MVC Core 2.2 
 * Cliente Tester API - MSTest
 * Cliente Teste Cliente - NUnit, Specflow
 
-## Reglas de juego 🚀
+### Pre-requisitos 📋
 
-_El desarrollo del proyecto se basa en crear la logica del juego de la vida utilizando TDD (Test Driven Development) desde el inicio._
-_No requiere una UI, ese no es objetivo, sino de aprender el como se debe aplicar TDD a un proyecto._
-_El proyecto se basara en las siguientes 4 reglas del juego:_
+
+
+[Dropwizard](http://www.dropwizard.io/1.0.2/docs/)
+Gran parte del proyecto
 
 * Cualquier célula viva con menos de dos vecinos vivos muere.
 * Cualquier célula viva con dos o tres vecinos vivos sigue viviendo para la siguiente generación.
 * Cualquier célula viva con más de tres vecinos vivos muere (cantidad maxima 8 vecinos en una grilla).
 * Cualquier célula muerta con exactamente tres vecinos vivos se convierte en una célula viva.
 
-
-### Pre-requisitos 📋
+### Instalaccion 🔧
 
 _Para poder hacer correr el proyecto es necesario las siguientes herramientas_
 
@@ -33,7 +33,7 @@ _Para poder hacer correr el proyecto es necesario las siguientes herramientas_
 * Un Entorno de Python (Puede ser el por defecto, o uno creado por el IDE)
 * Tener instalado en el Entorno UnitTest para realizar las pruebas
 
-### Instalación 🔧
+### Ejecutando API y Cliente 🚀
 
 _Clonar o descargar el proyecto desde el GitHub, de prefencia con un IDE que soporte o tenga integracion con Python_
 
