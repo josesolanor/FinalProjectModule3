@@ -61,7 +61,6 @@ namespace ClientWallet.Controllers
 
             if (responseMessage.IsSuccessStatusCode)
             {
-                var result = responseMessage.Content.ReadAsStringAsync().Result;
 
                 TempData["Msg"] = $"Deposito realizado correctamente";
                 return RedirectToAction("Index");

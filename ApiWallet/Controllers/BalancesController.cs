@@ -10,6 +10,7 @@ using ApiWallet.Entities;
 using ApiWallet.Models;
 using AutoMapper;
 using ApiWallet.Interfaces;
+using ApiWallet.Core;
 
 namespace ApiWallet.Controllers
 {
@@ -17,38 +18,30 @@ namespace ApiWallet.Controllers
     [ApiController]
     public class BalancesController : ControllerBase
     {
-        private readonly IMapper _mapper;
-        private readonly ApplicationDBContext _context;
-        private readonly ILogicMethods _logicMethods;
+        private readonly IRepositoryBalance _repositoryBalance;
 
-        public BalancesController(ApplicationDBContext context,
-            IMapper mapper,
-            ILogicMethods logicMethods)
+        public BalancesController(IRepositoryBalance repositoryBalance)
         {
-            _context = context;
-            _mapper = mapper;
-            _logicMethods = logicMethods;
+            _repositoryBalance = repositoryBalance;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<BalanceDTO>>> GetBalances()
         {
-            var balances = await _context.Balances.ToListAsync();
-            var balancesDTO = _mapper.Map<List<BalanceDTO>>(balances);
+            var balancesDTO = await _repositoryBalance.GetAllBalances();
             return balancesDTO;
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<BalanceDTO>> GetBalance(int id)
         {
-            var balance = await _context.Balances.FindAsync(id);
+            var balanceDTO = await _repositoryBalance.GetBalance(id);
 
-            if (balance == null)
+            if (balanceDTO is null)
             {
                 return NotFound();
             }
 
-            var balanceDTO = _mapper.Map<BalanceDTO>(balance);
             return balanceDTO;
         }
 
@@ -56,36 +49,26 @@ namespace ApiWallet.Controllers
         public async Task<ActionResult<BalanceDTO>> PostBalance(BalanceDTO balanceDTO)
         {
 
-            if (balanceDTO.Amount <= 0)
+            var result = await _repositoryBalance.AddTransaction(balanceDTO);
+
+            if (result[0].Equals(AddTransaccionResponse.MinorZero))
             {
                 return BadRequest("Error, Monto menor a cero");
             }
 
-            var balances = await _context.Balances.ToListAsync();
-            var balancesDTO = _mapper.Map<List<BalanceDTO>>(balances);
-            var result = _logicMethods.AddTransaction(balancesDTO, balanceDTO.Type, balanceDTO.Amount);
-
-            if (result)
+            if (result[0].Equals(AddTransaccionResponse.ToMuchWithDrawAmount))
             {
-                var balanceEntity = _mapper.Map<Balance>(balanceDTO);
-                balanceEntity.Date = DateTime.Now;
-
-                _context.Balances.Add(balanceEntity);
-                await _context.SaveChangesAsync();
-
-                return CreatedAtAction("GetBalance", new { id = balanceEntity.Id }, balanceDTO);
+                return BadRequest("Error, Monto de retiro mayor al saldo actual");
             }
-            return BadRequest("Error, Monto de retiro mayor al saldo actual");            
+
+            return CreatedAtAction("GetBalance", new { id = result[1] }, balanceDTO);
+
         }
 
         [Route("Showbalance")]
         public async Task<decimal> ShowBalance()
-        {            
-            var balances = await _context.Balances.ToListAsync();
-            var balancesDTO = _mapper.Map<List<BalanceDTO>>(balances);
-
-            var result = _logicMethods.ShowBalance(balancesDTO);
-
+        {
+            var result = await _repositoryBalance.ShowBalance();
             return result;
         }
     }

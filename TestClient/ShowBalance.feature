@@ -1,9 +1,9 @@
-﻿Feature: ShowBalance
+﻿Feature: Ver Saldo
 	Como un cliente de API web (no humano)
 	Requiero verificar mi saldo actual
 
 Scenario: Visualizar mi saldo actual
-	Given I have entered 50 into the calculator
-	And I have entered 70 into the calculator
-	When I press add
-	Then the result should be 120 on the screen
+	Given Que soy un cliente http
+	When Hago un request GET hacia el url de mi saldo
+	Then Recibo una respuesta con http 200
+	And Recibo el valor de mi saldo en un JSON con tamaño de cadena 1
