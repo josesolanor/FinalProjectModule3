@@ -25,7 +25,7 @@
                     </div>
                     <div class="col-xs-12">
                         <div class="form-group">
-                            <input type="submit" value="Aceptar" class="btn btn-group-vertical btn-outline-secondary" />
+                            <input type="submit" value="Aceptar" name="Aceptar" class="btn btn-group-vertical btn-outline-secondary" />
                         </div>
                     </div>
                 </form>
@@ -65,7 +65,7 @@
 </div>
 
 <h5 style="color: red">@TempData["ApiMsg"]</h5>
-<h5>@TempData["Msg"]</h5>
+<h5 id="msgResponse">@TempData["Msg"]</h5>
 
 <div class="text-center">
     <h2 class="display-4">Saldo</h2>
@@ -76,10 +76,10 @@
 
 <div class="row text-center">
     <div class="col-12 col-sm-6 col-md-6">
-        <button data-toggle="modal" data-target="#DepositModal" class="btn btn-group-vertical btn-outline-secondary" type="button">Depositar</button>
+        <button data-toggle="modal" data-target="#DepositModal" name="Depositar" class="btn btn-group-vertical btn-outline-secondary" type="button">Depositar</button>
     </div>
     <div class="col-12 col-sm-6 col-md-6">
-        <button data-toggle="modal" data-target="#WithDrawModal" class="btn btn-group-vertical btn-outline-secondary" type="button">Retirar</button>
+        <button data-toggle="modal" data-target="#WithDrawModal" name="Retirar" class="btn btn-group-vertical btn-outline-secondary" type="button">Retirar</button>
     </div>
 </div>
 
