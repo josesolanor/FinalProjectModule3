@@ -17,6 +17,7 @@ La implementacion del proyecto y sus pruebas se desarrollaron bajo tecnologia Mi
 
 
 [Dropwizard](http://www.dropwizard.io/1.0.2/docs/)
+![alt text](https://imgur.com/xa07794)
 Gran parte del proyecto
 
 * Cualquier célula viva con menos de dos vecinos vivos muere.
