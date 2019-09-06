@@ -53,7 +53,7 @@ namespace TestClient.Specs
         }
 
         [Then(@"Se debe actualizar el saldo")]
-        public void ThenSeDebeMostrarElMensaje()
+        public void ThenSeDebeActualizaElSaldo()
         {
             System.Threading.Thread.Sleep(2000);
 
