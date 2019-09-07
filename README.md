@@ -12,36 +12,93 @@ La implementacion del proyecto y sus pruebas se desarrollaron bajo tecnologia Mi
 * Cliente Tester API - MSTest
 * Cliente Teste Cliente - NUnit, Specflow
 
-### Pre-requisitos 📋
+## Pre-requisitos e Instalacion 📋
 
+Para poder ejecutar el proyecto y sus pruebas se puede utilizar diferentes herramientas (las mas recomendadas):
 
+* Visual Studio 2019
+* Visual Studio Code
 
-[Dropwizard](http://www.dropwizard.io/1.0.2/docs/)
-![alt text](https://imgur.com/xa07794)
-Gran parte del proyecto
+Para ambas herramientas es necesario tener ciertos paquetes y librerias instaladas
 
-* Cualquier célula viva con menos de dos vecinos vivos muere.
-* Cualquier célula viva con dos o tres vecinos vivos sigue viviendo para la siguiente generación.
-* Cualquier célula viva con más de tres vecinos vivos muere (cantidad maxima 8 vecinos en una grilla).
-* Cualquier célula muerta con exactamente tres vecinos vivos se convierte en una célula viva.
+### Visual Studio 
+_Cualquier version, Visual studio solo soporta Windows y Mac_
 
-### Instalaccion 🔧
+Para poder ejecutar correctamente el proyecto en el IDE [Visual Studio](https://visualstudio.microsoft.com/es/downloads/), este debe ser instalado con las siguientes herramientas de desarrollo
 
-_Para poder hacer correr el proyecto es necesario las siguientes herramientas_
+![image](https://user-images.githubusercontent.com/43735720/64465903-f139f280-d0dc-11e9-9deb-014da2f7a541.png)
 
-* Python 3.7.
-* Editor de texto o IDE (Visual Studio, Visual Studio Code, PyCharm, etc..).
-* Un Entorno de Python (Puede ser el por defecto, o uno creado por el IDE)
-* Tener instalado en el Entorno UnitTest para realizar las pruebas
+Tambien debemos tener instalado el SDK de Core 2.2 (Esto suele venir incluido en la version 2019)
 
-### Ejecutando API y Cliente 🚀
+[.NET Core 2.2 SDK](https://dotnet.microsoft.com/download)
 
-_Clonar o descargar el proyecto desde el GitHub, de prefencia con un IDE que soporte o tenga integracion con Python_
+para verificar que el Core 2.2 SDK se haya instalado correctamente solo debemos ejecutar en la consola (cmd, powershell, bash, etc..) la siguiente linea
 
-_El IDE utilizado fue Visual Studio 2019 Enterprise, con modificaciones para trabajar con Python_
+```
+dotnet --version
+```
+La version debe ser 2.2.X
 
-_En caso de usar editor de texto, abrir la carpeta del proyecto._
+### Visual Studio Code
 
+Debe instalarse el Editor de texto [Visual Studio Code](https://visualstudio.microsoft.com/es/downloads/)
+
+Tambien debemos tener instalado el SDK de Core 2.2
+
+[.NET Core 2.2 SDK](https://dotnet.microsoft.com/download)
+
+Una vez instalado Visual Studio Code, se debe instalar las siguientes Extensiones (Para visualizar mejor las pruebas)
+
+[Dotnet Test Explorer](https://marketplace.visualstudio.com/items?itemName=formulahendry.dotnet-test-explorer)
+
+Tambien la extension (En caso de no instalarse automaticament) de lenguaje c#
+
+[VSCode Csharp](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp)
+
+## Cargando el proyecto 🔧
+
+Se debe clonar el proyecto del repositorio [Github](https://github.com/josesolanor/FinalProjectModule3) y ser abierto por un IDE o Editor de texto
+
+La solucion cuenta con cuatro proyectos: un cliente MVC, un Web services y dos Test Client
+
+## Ejecutando API y Cliente 🚀
+
+### Visual Studio
+
+Una vez tengamos abierto el proyecto en el IDE Visual Studio debemos configurar el IDE para ejecutar dos proyectos a la vez
+
+Nos vamos a la Solucion("Wallet") > Click Derecho y nos vamos a "Propiedades"
+
+En la ventana emergente, vamos al menu "Propiedades Comunes" > "Proyecto de inicio"
+
+Dentro marcamos "Proyectos de inicio multiples" y en "Apiwallet" y "ClientWallet" elegimos como Accion > Iniciar
+Finalmente Aplicamos.
+![image](https://user-images.githubusercontent.com/43735720/64466899-5ba16180-d0e2-11e9-933f-d32b1ff06b27.png)
+
+Ahora podemos ejecutar los dos proyectos a la vez Apretando la tecla F5 o el Boton "Iniciar"
+
+### Visual Studio Code
+
+Una vez tengamos abierto el proyecto en el Editor de texto VS Code debemos abrir una terminal por proyecto _ejemplo_
+
+![image](https://user-images.githubusercontent.com/43735720/64465600-9227ae00-d0db-11e9-84bc-708bbb1e9e66.png)
+
+Dentro de cada terminal,  debemos acceder a las carpetas de las soluciones
+
+Para el proyecto Web Services 
+```
+cd ApiWallet/
+```
+
+Para el proyecto Cliente
+```
+cd ClientWallet/
+```
+
+Y para inicializar cada proyecto debemos ejecutar el siguiente comando en cada terminal
+```
+dotnet run
+```
 
 ## Ejecutando las pruebas ⚙️
 
