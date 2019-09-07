@@ -131,7 +131,7 @@ OJO _La prueba de UI tiene una manera especial de ejecutarse_
 
 ### Prueba de UI automatizada
 
-Finalmente para ejecutar la prueba de Ui automatizada (independiente de si es el IDE o VS Code) primero debe estar ambos proyectos corriendo, tanto el Cliente como la API.
+Finalmente para ejecutar la prueba de Ui automatizada (independiente de si es el IDE o VS Code) primero deben estar ambos proyectos corriendo, tanto el Cliente como la API.
 
 _Esto se debe a que la prueba llama al host de manera local_
 
