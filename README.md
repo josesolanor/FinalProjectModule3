@@ -3,6 +3,7 @@
 _Autor: Jose G Solano Romero_
 
 _Proyecto final para el modulo 3 Prueba de software Qtesting_
+
 _La implementación de todos los niveles de pruebas en el diagrama piramidal, es decir Pruebas Unitarias, Pruebas de Integración y Prueba de UI automatizadas._
 
 La implementacion del proyecto y sus pruebas se desarrollaron bajo tecnologia Microsoft de la siguiente manera:
@@ -71,7 +72,7 @@ Nos vamos a la Solucion("Wallet") > Click Derecho y nos vamos a "Propiedades"
 
 En la ventana emergente, vamos al menu "Propiedades Comunes" > "Proyecto de inicio"
 
-Dentro marcamos "Proyectos de inicio multiples" y en "Apiwallet" y "ClientWallet" elegimos como Accion > Iniciar
+Dentro marcamos "Proyectos de inicio multiples" > en "Apiwallet" y "ClientWallet" elegimos como Accion > Iniciar
 Finalmente Aplicamos.
 ![image](https://user-images.githubusercontent.com/43735720/64466899-5ba16180-d0e2-11e9-933f-d32b1ff06b27.png)
 
@@ -102,22 +103,47 @@ dotnet run
 
 ## Ejecutando las pruebas ⚙️
 
-Si se utiliza un IDE, deberia reconocer las pruebas como tal, en caso de no realizarlo solo se debe referenciar el archivo "TestGameOfLife.py"
+### Visual Studio
 
-Si se utiliza un Editor de texto, es recomendable instalar una extension de prueba de python.
+Para ejecutar la pruebas, debemos ir a la pestaña "Prueba" > "Windows" > "Explorador de pruebas" o ejecutar el comando "Ctrl+E, T"
 
-Si no se cuenta con una extension del editor de texto, o desea realizarlo mediante consola debe seguir los siguientes pasos:
+![image](https://user-images.githubusercontent.com/43735720/64467160-f484ac80-d0e3-11e9-8462-ed8d685b8e91.png)
 
-Abrir la consola de sistema(cmd, bash, windows PowerShell, etc) y crear un entorno de python
+En el "Explorador de pruebas" podemos ver como se cargan todas la pruebas de ambos proyectos, las pruebas unitarias, de integracion y UI
 
+![image](https://user-images.githubusercontent.com/43735720/64467177-3dd4fc00-d0e4-11e9-85b6-2d3a656769bf.png)
+
+Solo deben ejecutarse las pruebas y listo..
+
+OJO _La prueba de UI tiene una manera especial de ejecutarse_
+
+### Visual Studio Code
+
+Si se instalo la extension [Dotnet Test Explorer](https://marketplace.visualstudio.com/items?itemName=formulahendry.dotnet-test-explorer) solo debe seleccionar en la pestaña lateral las pruebas y hacerlas correr
+
+_Es probable que estas no carguen a la primera, puede ser necesario volver a ejecutarlas hasta que estas carguen_
+
+![image](https://user-images.githubusercontent.com/43735720/64467336-a1abf480-d0e5-11e9-83ea-b3418786ffbe.png)
+
+y listo..
+
+OJO _La prueba de UI tiene una manera especial de ejecutarse_
+
+### Prueba de UI automatizada
+
+Finalmente para ejecutar la prueba de Ui automatizada (independiente de si es el IDE o VS Code) primero debe estar ambos proyectos corriendo, tanto el Cliente como la API.
+
+_Esto se debe a que la prueba llama al host de manera local_
+
+Una vez se tenga ambos proyectos corriendo y funcionando, abrimos una terminal en la carpeta root del proyecto "TestClient"
+
+![image](https://user-images.githubusercontent.com/43735720/64467470-cfde0400-d0e6-11e9-94d5-bdac0b07b6e3.png)
+
+y ejecutamos el comando 
 ```
-$ python -m venv mi-entorno-virtual
+dotnet test
 ```
+y listo, esto ejecutara la prueba de UI automatizada, añadiendo el valor de 10 al saldo actual.
 
-Teniendo el Entorno Activado, dentro de la carpeta del proyecto, ejecutar el archivo de pruebas
+Gracias!!!...
 
-```
-$ py TestGameOfLife.py
-```
-
-Y podremos visualizar los resultados de las pruebas!!
