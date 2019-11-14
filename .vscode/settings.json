@@ -1,0 +1,10 @@
+{
+    "sqltools.connections": [
+        {
+            "database": ".\\ApiWallet\\MyDatabase.db",
+            "dialect": "SQLite",
+            "name": "DatabaseAPI"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
