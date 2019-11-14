@@ -4,9 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using ApiWallet.Context;
-using ApiWallet.Core;
 using ApiWallet.Entities;
-using ApiWallet.Interfaces;
 using ApiWallet.Mapper;
 using ApiWallet.Models;
 using AutoMapper;
@@ -17,6 +15,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+
+using WalletCore.Core;
+using WalletCore.Interfaces;
 
 namespace ApiWallet
 {
@@ -41,7 +42,7 @@ namespace ApiWallet
 
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
-            services.AddEntityFrameworkSqlite().AddDbContext<ApplicationDBContext>();
+            //services.AddEntityFrameworkSqlite().AddDbContext<ApplicationDBContext>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 

@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ApiWallet.Context;
-using ApiWallet.Entities;
-using ApiWallet.Models;
-using AutoMapper;
-using ApiWallet.Interfaces;
-using ApiWallet.Core;
+using WalletCore.Models;
+using WalletCore.Interfaces;
 
 namespace ApiWallet.Controllers
 {

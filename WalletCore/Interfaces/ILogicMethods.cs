@@ -1,7 +1,7 @@
-﻿using ApiWallet.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using WalletCore.Models;
 
-namespace ApiWallet.Interfaces
+namespace WalletCore.Interfaces
 {
     public interface ILogicMethods
     {
