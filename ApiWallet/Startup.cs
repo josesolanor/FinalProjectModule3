@@ -3,10 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using ApiWallet.Context;
-using ApiWallet.Entities;
-using ApiWallet.Mapper;
-using ApiWallet.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,6 +14,9 @@ using Microsoft.Extensions.Options;
 
 using WalletCore.Core;
 using WalletCore.Interfaces;
+using WalletCore.Mapper;
+using WalletCore.Models;
+using WalletCore.Entities;
 
 namespace ApiWallet
 {
@@ -46,8 +45,8 @@ namespace ApiWallet
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
                 .AddJsonOptions(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-            services.AddTransient<ILogicMethods, LogicMethods>();
-            services.AddTransient<IRepositoryBalance, RepositoryBalance>();
+            services.AddScoped<ILogicMethods, LogicMethods>();
+            services.AddScoped<IRepositoryBalance, RepositoryBalance>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

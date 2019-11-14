@@ -1,6 +1,6 @@
-using ApiWallet.Core;
-using ApiWallet.Interfaces;
-using ApiWallet.Models;
+using WalletCore.Core;
+using WalletCore.Interfaces;
+using WalletCore.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

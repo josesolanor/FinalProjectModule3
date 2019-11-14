@@ -1,5 +1,5 @@
 ﻿using ApiWallet;
-using ApiWallet.Core;
+using WalletCore.Interfaces;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;

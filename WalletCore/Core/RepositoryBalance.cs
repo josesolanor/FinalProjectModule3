@@ -17,11 +17,14 @@ namespace WalletCore.Core
         private readonly ApplicationDBContext _context;
         private readonly ILogicMethods _logicMethods;
 
-        public RepositoryBalance(ApplicationDBContext context,
+        public RepositoryBalance(
             IMapper mapper,
             ILogicMethods logicMethods)
         {
-            _context = context;
+
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDBContext>();
+            optionsBuilder.UseSqlite("Filename=MyDatabase.db");
+            _context = new ApplicationDBContext(optionsBuilder.Options);
             _mapper = mapper;
             _logicMethods = logicMethods;
         }

@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ApiWallet.Core;
-using ApiWallet.Entities;
-using ApiWallet.Models;
+using WalletCore.Core;
+using WalletCore.Entities;
+using WalletCore.Interfaces;
+using WalletCore.Models;
 
 namespace TestClient.Mocks
 {

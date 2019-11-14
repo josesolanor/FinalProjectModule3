@@ -9,7 +9,7 @@ using WalletCore.Context;
 namespace WalletCore.Migrations
 {
     [DbContext(typeof(ApplicationDBContext))]
-    [Migration("20191114040050_Initial")]
+    [Migration("20191114050035_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

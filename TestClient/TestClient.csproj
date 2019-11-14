@@ -27,6 +27,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="WalletCore">
+      <HintPath>..\WalletCore\bin\Debug\netcoreapp2.2\WalletCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="ShowBalance.feature.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

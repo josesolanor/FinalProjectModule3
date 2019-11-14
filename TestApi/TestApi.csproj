@@ -18,4 +18,10 @@
     <ProjectReference Include="..\ApiWallet\ApiWallet.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="WalletCore">
+      <HintPath>..\WalletCore\bin\Debug\netcoreapp2.2\WalletCore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
