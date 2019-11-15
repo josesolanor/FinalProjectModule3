@@ -100,20 +100,25 @@ namespace ClientWallet.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Wallet()
+        public async Task<IActionResult> GetWallet()
         {
+            var result = "";
             HttpResponseMessage responseMessage = await _api.GetWallet();
             if (responseMessage.IsSuccessStatusCode)
             {
-                var result = responseMessage.Content.ReadAsStringAsync().Result;
-                walletList = JsonConvert.DeserializeObject<List<Wallet>>(result);
-                return View(walletList);
+                result = responseMessage.Content.ReadAsStringAsync().Result;
+                return Json(result);
             }
             else
-            {
-                ViewBag.Message = "Error en el servidor.";
-                return View(walletList);
+            {                
+                return Json(result);
             }
+        }
+
+        [HttpGet]
+        public IActionResult Wallet()
+        {
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
